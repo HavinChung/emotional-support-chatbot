@@ -16,6 +16,7 @@ def call_llm(system_prompt, user_prompt, api_key, model=None):
         }
     )
     result = response.json()
+    print("API RESPONSE:", result)
     if 'choices' not in result:
         raise ValueError(f"API Error: {result}")
     return result['choices'][0]['message']['content']
