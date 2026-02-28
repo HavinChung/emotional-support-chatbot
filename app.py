@@ -20,10 +20,16 @@ def load_pipeline():
 
 @st.cache_resource
 def load_classifier():
-    tokenizer = AutoTokenizer.from_pretrained("models/emotion_classifier")
-    model = AutoModelForSequenceClassification.from_pretrained("models/emotion_classifier")
-    with open("models/emotion_classifier/label_encoder.pkl", 'rb') as f:
+    from huggingface_hub import hf_hub_download
+    import pickle
+
+    tokenizer = AutoTokenizer.from_pretrained("HavinChung/emotion-classifier")
+    model = AutoModelForSequenceClassification.from_pretrained("HavinChung/emotion-classifier")
+    
+    pkl_path = hf_hub_download(repo_id="HavinChung/emotion-classifier", filename="label_encoder.pkl")
+    with open(pkl_path, 'rb') as f:
         le = pickle.load(f)
+    
     return tokenizer, model, le
 
 def predict_emotion(text, tokenizer, model, le):
