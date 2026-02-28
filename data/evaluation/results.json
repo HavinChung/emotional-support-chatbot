@@ -1,0 +1,20 @@
+{
+  "emotion_classifier": {
+    "accuracy": 0.77,
+    "model": "bert-base-uncased",
+    "dataset": "EmpatheticDialogues",
+    "num_classes": 10
+  },
+  "safety_triage": {
+    "accuracy": 0.96,
+    "false_positives": 0,
+    "false_negatives": 4,
+    "total_cases": 100
+  },
+  "bertscore": {
+    "precision": 0.7866,
+    "recall": 0.8553,
+    "f1": 0.8194,
+    "num_samples": 20
+  }
+}

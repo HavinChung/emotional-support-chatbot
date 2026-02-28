@@ -1,0 +1,11 @@
+streamlit
+transformers
+torch
+sentence-transformers
+faiss-cpu
+pandas
+scikit-learn
+requests
+bert-score
+beautifulsoup4
+pyarrow
