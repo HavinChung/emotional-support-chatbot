@@ -1,6 +1,6 @@
 import requests
 
-def call_llm(system_prompt, user_prompt, api_key, model):
+def call_llm(system_prompt, user_prompt, api_key, model=None):
     response = requests.post(
         url="https://openrouter.ai/api/v1/chat/completions",
         headers={
@@ -15,4 +15,7 @@ def call_llm(system_prompt, user_prompt, api_key, model):
             ]
         }
     )
-    return response.json()['choices'][0]['message']['content']
+    result = response.json()
+    if 'choices' not in result:
+        raise ValueError(f"API Error: {result}")
+    return result['choices'][0]['message']['content']
