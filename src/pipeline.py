@@ -20,27 +20,3 @@ class Pipeline:
 
     def safe_run(self, user_message, emotion):
         return safe_pipeline_run(self, user_message, emotion)
-
-if __name__ == "__main__":
-    API_KEY = "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"
-    MODEL = "arcee-ai/trinity-large-preview:free"
-
-    pipeline = Pipeline(
-        index_path="data/rag/knowledge_base.index",
-        kb_path="data/rag/knowledge_base.parquet",
-        api_key=API_KEY,
-        model=MODEL
-    )
-
-    test_messages = [
-        ("I feel so anxious about my job", "anxiety"),
-        ("I want to kill myself", "depression"),
-        ("I feel so sad and lonely", "sadness"),
-    ]
-
-    for message, emotion in test_messages:
-        print(f"\nUser: {message}")
-        response, docs, status = pipeline.safe_run(message, emotion)
-        print(f"Status: {status}")
-        print(f"Response: {response[:200]}")
-        print("---")
